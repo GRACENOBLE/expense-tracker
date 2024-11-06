@@ -1,10 +1,10 @@
-package functions
+package helpers
 
 import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"github.com/GRACENOBLE/expense-tracker/types"
+	"github.com/GRACENOBLE/expense-tracker/cmd/types"
 )
 
 func CreateFileIfNotExists(filename string){
@@ -27,7 +27,7 @@ func IsFileEmpty(filename string) (bool, error) {
 }
 
 // Helper function to write expenses to file
-func writeExpensesToFile(filename string, expenses []types.Expense) error {
+func WriteExpensesToFile(filename string, expenses []types.Expense) error {
 	jsonData, err := json.MarshalIndent(expenses, "", "  ")
 	if err != nil {
 		return fmt.Errorf("failed to marshal JSON: %w", err)
@@ -37,7 +37,7 @@ func writeExpensesToFile(filename string, expenses []types.Expense) error {
 }
 
 // Helper function to read expenses from file
-func readExpensesFromFile(filename string) ([]types.Expense, error) {
+func ReadExpensesFromFile(filename string) ([]types.Expense, error) {
 	data, err := os.ReadFile(filename)
 	if err != nil {
 		return nil, fmt.Errorf("failed to read file: %w", err)

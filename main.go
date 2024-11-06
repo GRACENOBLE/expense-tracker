@@ -3,13 +3,11 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"time"
-
+	"github.com/GRACENOBLE/expense-tracker/cmd/functions"
+	"github.com/GRACENOBLE/expense-tracker/cmd/types"
 	"os"
 	"strings"
-
-	"github.com/GRACENOBLE/expense-tracker/functions"
-	"github.com/GRACENOBLE/expense-tracker/types"
+	"time"
 )
 
 func main() {

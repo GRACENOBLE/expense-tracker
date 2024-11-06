@@ -2,7 +2,7 @@ package functions
 
 import (
 	"fmt"
-	"github.com/GRACENOBLE/expense-tracker/types"
+	"github.com/GRACENOBLE/expense-tracker/cmd/types"
 )
 
 func DeleteExpense(expense types.Expense){
