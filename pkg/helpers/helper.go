@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"github.com/GRACENOBLE/expense-tracker/cmd/types"
+	"github.com/GRACENOBLE/expense-tracker/pkg/types"
 )
 
 func CreateFileIfNotExists(filename string){
@@ -50,3 +50,4 @@ func ReadExpensesFromFile(filename string) ([]types.Expense, error) {
 
 	return expenses, nil
 }
+

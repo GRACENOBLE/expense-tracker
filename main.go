@@ -3,23 +3,17 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"github.com/GRACENOBLE/expense-tracker/cmd/functions"
-	"github.com/GRACENOBLE/expense-tracker/cmd/types"
+	"github.com/GRACENOBLE/expense-tracker/cmd"
+	"log"
 	"os"
+	"strconv"
 	"strings"
-	"time"
 )
 
 func main() {
 
 	reader := bufio.NewReader(os.Stdin)
 	for {
-		demo := types.Expense{
-			ID:          1,
-			Date:        time.Now().Format("2006-01-02 15:04:05"),
-			Description: "lunch",
-			Amount:      20,
-		}
 
 		fmt.Print("expense-tracker:")
 
@@ -30,13 +24,30 @@ func main() {
 		switch parts[0] {
 
 		case "add":
-			functions.AddExpense(demo)
+			if len(parts) == 3 {
+
+				ammount, err := strconv.ParseInt(parts[2], 10, 64)
+				if err != nil {
+					log.Fatal(err)
+				}
+				cmd.AddExpense(parts[1], ammount)
+
+				return
+
+			} 
+
+			fmt.Println("Invalid command-line Arguments")
+			
 		case "list":
-			functions.ListExpenses()
+
+			cmd.ListExpenses()
+
 		case "summary":
-			functions.SummarizeExpenses()
+
+			cmd.SummarizeExpenses()
+
 		case "delete":
-			functions.DeleteExpense(demo)
+			// cmd.DeleteExpense()
 		default:
 			fmt.Println("Command not recognized, try \"help\"")
 		}
