@@ -3,29 +3,19 @@ package cmd
 import (
 	"encoding/json"
 	"fmt"
-	"log"
-	"os"
-
-	"github.com/GRACENOBLE/expense-tracker/pkg/types"
+	"github.com/spf13/cobra"
 )
 
-func DeleteExpense(index int64){
-
-	jsonData, err := os.ReadFile("output/expenses.json")
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	var expenses []types.Expense
-	
-	err = json.Unmarshal(jsonData, &expenses)
-	if err != nil{
-		log.Fatal(err)
-	}
-
-	for _, expense := range expenses{
-		
-		fmt.Printf("%v", expense)
-	}
-
+func init() {
+	rootCmd.AddCommand(deleteExpense)
 }
+
+var deleteExpense = &cobra.Command{
+	Use:   "delete",
+	Short: "Delete a task",
+	Long:  "This function takes a command line argument and deletes a corresponding task.",
+	Run: func(cmd *cobra.Command, args []string) {
+		fmt.Println("Deleting expense")
+	},
+}
+
