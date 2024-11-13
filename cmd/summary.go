@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
-
+	"github.com/GRACENOBLE/expense-tracker/pkg/helpers"
 	"github.com/GRACENOBLE/expense-tracker/pkg/types"
 	"github.com/spf13/cobra"
 )
@@ -19,6 +19,18 @@ var sumariseExpenses = &cobra.Command{
 	Short: "Sumarize all tasks",
 	Long:  "This lists all tasks in a more human readable way.",
 	Run: func(cmd *cobra.Command, args []string) {
+
+		helpers.CreateFileIfNotExists("output/expenses.json")
+
+		empty, err := helpers.IsFileEmpty("output/expenses.json")
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		if empty {
+			log.Fatal("You dont have any Expenses")
+		}
+
 		jsonData, err := os.ReadFile("output/expenses.json")
 		if err != nil {
 			log.Fatal(err)
