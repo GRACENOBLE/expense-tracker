@@ -3,7 +3,9 @@ package helpers
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"os"
+
 	"github.com/GRACENOBLE/expense-tracker/pkg/types"
 )
 
@@ -38,6 +40,15 @@ func WriteExpensesToFile(filename string, expenses []types.Expense) error {
 
 // Helper function to read expenses from file
 func ReadExpensesFromFile(filename string) ([]types.Expense, error) {
+	
+	CreateFileIfNotExists(filename)
+
+	if empty, err := IsFileEmpty(filename); err != nil {
+		log.Fatal(err)
+	}else if empty{
+		log.Fatal("You do not have any expenses")
+	}
+	
 	data, err := os.ReadFile(filename)
 	if err != nil {
 		return nil, fmt.Errorf("failed to read file: %w", err)
