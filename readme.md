@@ -24,4 +24,4 @@ To see help on how to use the app
 ```bash
 ./expense-tracker help
 ```
-A detailed list of commands can be found in the [manual](/manual)
+A detailed list of commands can be found in the [manual](/manual.md)
