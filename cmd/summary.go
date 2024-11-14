@@ -1,12 +1,10 @@
 package cmd
 
 import (
-	"encoding/json"
 	"fmt"
 	"log"
-	"os"
+
 	"github.com/GRACENOBLE/expense-tracker/pkg/helpers"
-	"github.com/GRACENOBLE/expense-tracker/pkg/types"
 	"github.com/spf13/cobra"
 )
 
@@ -31,14 +29,7 @@ var sumariseExpenses = &cobra.Command{
 			log.Fatal("You dont have any Expenses")
 		}
 
-		jsonData, err := os.ReadFile("output/expenses.json")
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		var expenses []types.Expense
-
-		err = json.Unmarshal(jsonData, &expenses)
+		expenses, err := helpers.ReadExpensesFromFile("output/expenses.json")
 		if err != nil {
 			log.Fatal(err)
 		}
