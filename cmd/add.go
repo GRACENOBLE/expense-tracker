@@ -15,7 +15,7 @@ func init() {
 
 var addExpense = &cobra.Command{
 	Use:   "add",
-	Short: "Add an expense to the JSON",
+	Short: "Add an expense to the expense-tracker",
 	Long:  "This command takes in command line arguments and uses them to create an ",
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) != 2 {

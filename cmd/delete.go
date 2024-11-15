@@ -16,7 +16,7 @@ func init() {
 var deleteExpense = &cobra.Command{
 	Use:   "delete",
 	Short: "Delete a task",
-	Long:  "This function takes a command line argument and deletes a corresponding task.",
+	Long:  "This function takes a command line argument as an integer and deletes corresponding task with the same ID.",
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 1 {
 			index, err := strconv.ParseInt(args[0], 10, 64)
